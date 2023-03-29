@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, StyleSheet, Button, Image, Text, TextInput } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Onboarding = () => {
   const [input, setInput] = useState({
@@ -27,6 +28,10 @@ const Onboarding = () => {
   };
 
   validateFirstname = (firstname) => /^(?:[A-Za-z]+|\d+)$/.test(firstname);
+
+  finishOnboarding = async () => {
+    await AsyncStorage.setItem("IS_LOGGED_IN", "true");
+  };
 
   return (
     <View style={styles.container}>
@@ -58,7 +63,12 @@ const Onboarding = () => {
         ></TextInput>
       </View>
       <View style={styles.nextButtonWrapper}>
-        <Button disabled={!input.isValid} color="#cbd2d9" title="Next" />
+        <Button
+          disabled={!input.isValid}
+          color="#cbd2d9"
+          title="Next"
+          onPress={finishOnboarding}
+        />
       </View>
     </View>
   );
