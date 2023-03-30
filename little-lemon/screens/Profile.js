@@ -90,6 +90,15 @@ const Profile = () => {
   };
 
   saveInputToStorage = async () => {
+    if (input.phoneNumber.length != 10) {
+      Alert.alert(
+        "Correct Data:",
+        "The phone number should be 10 characters long."
+      );
+      return;
+    } else if (!validateEmail(input.email)) {
+      Alert.alert("Correct Data:", "The E-Mail is not well formed.");
+    }
     await AsyncStorage.setItem("AVATAR", input.avatar);
     await AsyncStorage.setItem("FIRSTNAME", input.firstname);
     await AsyncStorage.setItem("LASTNAME", input.lastname);
@@ -221,7 +230,7 @@ const Profile = () => {
             value={input.phoneNumber}
             mask="(999) 999-9999"
             keyboardType="numeric"
-            onChangeText={(text, rawText) => {}}
+            onChangeText={onPhoneNumberChanged}
             style={styles.inputSectionInput}
           />
         </View>
