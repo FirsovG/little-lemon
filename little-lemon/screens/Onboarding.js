@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { View, StyleSheet, Button, Image, Text, TextInput } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as React from "react";
+
+import { AuthContext } from "../navigators/RootNavigator";
 
 const Onboarding = () => {
+  const { logIn } = React.useContext(AuthContext);
+
   const [input, setInput] = useState({
     firstname: "",
     email: "",
@@ -31,6 +36,9 @@ const Onboarding = () => {
 
   finishOnboarding = async () => {
     await AsyncStorage.setItem("IS_LOGGED_IN", "true");
+    await AsyncStorage.setItem("FIRSTNAME", input.firstname);
+    await AsyncStorage.setItem("EMAIL", input.email);
+    logIn();
   };
 
   return (
