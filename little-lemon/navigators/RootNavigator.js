@@ -6,6 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import OnboardingScreen from "../screens/Onboarding";
 import SplashScreen from "../screens/Splash";
 import ProfileScreen from "../screens/Profile";
+import HomeScreen from "../screens/Home";
 
 const Stack = createNativeStackNavigator();
 const AuthContext = React.createContext();
@@ -69,6 +70,9 @@ const RootNavigator = () => {
       <Stack.Navigator initialRouteName="Loading">
         {state.isLoading && (
           <Stack.Screen name="Loading" component={SplashScreen} />
+        )}
+        {state.isLoggedIn && (
+          <Stack.Screen name="Home" component={HomeScreen} />
         )}
         {state.isLoggedIn && (
           <Stack.Screen name="Profile" component={ProfileScreen} />
