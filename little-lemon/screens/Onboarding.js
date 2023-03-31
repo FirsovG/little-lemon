@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { View, StyleSheet, Button, Image, Text, TextInput } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Button,
+  Image,
+  Text,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as React from "react";
 
@@ -42,7 +50,7 @@ const Onboarding = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.navigation}>
         {/* Couldn't find logo of only the lemon. */}
         <Image
@@ -78,27 +86,24 @@ const Onboarding = () => {
           onPress={finishOnboarding}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: "#f1f4f7",
-  },
   navigation: {
     flex: 0.12,
     justifyContent: "center",
-    backgroundColor: "#dee3e9",
+    borderBottomColor: "#e7e7e7",
+    borderBottomWidth: 1,
   },
   navigationImage: {
     alignSelf: "center",
+    marginBottom: 10,
+    marginTop: 10,
   },
   inputSection: {
     flex: 0.75,
-    backgroundColor: "#cbd2d9",
     alignItems: "center",
   },
   inputSectionWelcome: {
@@ -124,9 +129,10 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   nextButtonWrapper: {
-    width: "30%",
-    marginTop: 5,
-    marginRight: 10,
+    width: "35%",
+    marginTop: 100,
+    marginRight: 20,
+    marginBottom: 40,
     alignSelf: "flex-end",
   },
 });
