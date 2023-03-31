@@ -127,13 +127,13 @@ const Profile = () => {
   validateOnlyAlphabetic = (string) => /^(?:[A-Za-z]+|\d+)$/.test(string);
 
   onFirstnameChanged = (firstname) => {
-    if (validateOnlyAlphabetic(firstname)) {
+    if (firstname === "" || validateOnlyAlphabetic(firstname)) {
       setInput((prev) => ({ ...prev, firstname: firstname }));
     }
   };
 
   onLastnameChanged = (lastname) => {
-    if (validateOnlyAlphabetic(lastname)) {
+    if (lastname === "" || validateOnlyAlphabetic(lastname)) {
       setInput((prev) => ({ ...prev, lastname: lastname }));
     }
   };
@@ -293,7 +293,6 @@ const styles = StyleSheet.create({
   },
   navigation: {
     justifyContent: "center",
-    backgroundColor: "#dee3e9",
   },
   navigationImage: {
     alignSelf: "center",
@@ -309,7 +308,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     marginBottom: 14,
-    marginTop: 22,
+    marginTop: 18,
   },
   sectionMargin: {
     marginBottom: 18,
